@@ -1,3 +1,5 @@
+import sys
+
 def get_book_text(path_to_file):
    # This function reads the contents of a file and returns it as a string.
     with open(path_to_file) as f:
@@ -7,11 +9,16 @@ def get_book_text(path_to_file):
 
 
 
-path_to_file = "./books/frankenstein.txt"
-
 def main():
     
     from stats import char_count, sorted_char_count, counting_words
+    #imports functions from stats.py
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    
+    path_to_file = sys.argv[1]
+
     book_text = get_book_text(path_to_file)
     counts= char_count(book_text)
     sorted_counts = sorted_char_count(counts)
